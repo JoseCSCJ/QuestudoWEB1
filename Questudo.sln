@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questudo", "Questudo\Questudo.csproj", "{4ECF4B1E-6FB3-4140-960E-1BFEC25C2A23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4ECF4B1E-6FB3-4140-960E-1BFEC25C2A23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECF4B1E-6FB3-4140-960E-1BFEC25C2A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECF4B1E-6FB3-4140-960E-1BFEC25C2A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECF4B1E-6FB3-4140-960E-1BFEC25C2A23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1703B11-E61E-4966-B6B1-0ADEF0AFD241}
+	EndGlobalSection
+EndGlobal

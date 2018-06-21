@@ -1,0 +1,12 @@
+C:\Users\Usuário\source\repos\Questudo\Questudo\bin\Debug\netcoreapp2.0\Questudo.deps.json
+C:\Users\Usuário\source\repos\Questudo\Questudo\bin\Debug\netcoreapp2.0\Questudo.runtimeconfig.json
+C:\Users\Usuário\source\repos\Questudo\Questudo\bin\Debug\netcoreapp2.0\Questudo.runtimeconfig.dev.json
+C:\Users\Usuário\source\repos\Questudo\Questudo\bin\Debug\netcoreapp2.0\Questudo.dll
+C:\Users\Usuário\source\repos\Questudo\Questudo\bin\Debug\netcoreapp2.0\Questudo.pdb
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.csprojResolveAssemblyReference.cache
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.csproj.CoreCompileInputs.cache
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.AssemblyInfoInputs.cache
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.AssemblyInfo.cs
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.dll
+C:\Users\Usuário\source\repos\Questudo\Questudo\obj\Debug\netcoreapp2.0\Questudo.pdb
