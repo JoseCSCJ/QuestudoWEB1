@@ -1,0 +1,31 @@
+﻿@model Questudo.Models.Classroom
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+     <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome da Sala de Aula
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Professor
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.Name)
+        </dd>
+    </dl>
+</div>
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClassroomID">Editar</a> |
+    <a asp-action="Index">Voltar para as Salas de Aula</a>
+</div>

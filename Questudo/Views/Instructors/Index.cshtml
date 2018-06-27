@@ -1,22 +1,22 @@
-﻿@model IEnumerable<Questudo.Models.Student>
+﻿@model IEnumerable<Questudo.Models.Instructor>
 
 @{
-    ViewData["Title"] = "Alunos";
+    ViewData["Title"] = "Professores";
 }
 
-<h2>Alunos</h2>
+<h2>Professores</h2>
 
 <p>
-    <a asp-action="Create">Cadastrar novo aluno</a>
+    <a asp-action="Create">Cadastrar novo professor</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    Aluno
+                    Professor
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    Email
                 </th>
             <th></th>
         </tr>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentID">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentID">Detalhar</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentID">Deletar</a>
+                <a asp-action="Edit" asp-route-id="@item.InstructorID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.InstructorID">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@item.InstructorID">Deletar</a>
             </td>
         </tr>
 }

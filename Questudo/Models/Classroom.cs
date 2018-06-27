@@ -7,11 +7,11 @@ namespace Questudo.Models
 {
     public class Classroom
     {
+             
         public int ClassroomID { get; set; }
         public int InstructorID { get; set; }
         public string Name { get; set; }
 
         public Instructor Instructor { get; set; }
-        
     }
 }

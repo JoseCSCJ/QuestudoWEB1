@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Questudo.Models.Enrolled>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Matrículas</h2>
+
+<p>
+    <a asp-action="Create">Fazer uma nova matrícula</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Sala de Aula
+            </th>
+            <th>
+                Instrutor
+            </th>
+            <th>
+                Estudante
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classroom.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classroom.Instructor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Name)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.EnrolledID">Desmatricular</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

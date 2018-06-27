@@ -9,25 +9,27 @@ using Questudo.Data;
 using Questudo.Models;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Questudo.Controllers
 {
     [Authorize]
-    public class StudentsController : Controller
+    public class ClassroomsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentsController(ApplicationDbContext context)
+        public ClassroomsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Students
+        // GET: Classrooms
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var classroomContext = _context.Classrooms.Include(c => c.Instructor);
+            return View(await classroomContext.ToListAsync());
         }
 
-        // GET: Students/Details/5
+        // GET: Classrooms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,39 +37,43 @@ namespace Questudo.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .SingleOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var classroom = await _context.Classrooms
+                .Include(c => c.Instructor)
+                .SingleOrDefaultAsync(m => m.ClassroomID == id);
+
+            if (classroom == null)
             {
                 return NotFound();
             }
-
-            return View(student);
+            
+            return View(classroom);
         }
 
-        // GET: Students/Create
+        // GET: Classrooms/Create
         public IActionResult Create()
         {
+            PopulateInstructorDropDownList();
             return View();
         }
 
-        // POST: Students/Create
+        // POST: Classrooms/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,Name,Email")] Student student)
+        public async Task<IActionResult> Create([Bind("ClassroomID,InstructorID,Name")] Classroom classroom)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(classroom);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            PopulateInstructorDropDownList(classroom.InstructorID);
+            return View(classroom);
         }
 
-        // GET: Students/Edit/5
+        // GET: Classrooms/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +81,23 @@ namespace Questudo.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var classroom = await _context.Classrooms.SingleOrDefaultAsync(m => m.ClassroomID == id);
+            if (classroom == null)
             {
                 return NotFound();
             }
-            return View(student);
+            PopulateInstructorDropDownList(classroom.InstructorID);
+            return View(classroom);
         }
 
-        // POST: Students/Edit/5
+        // POST: Classrooms/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentID,Name,Email")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("ClassroomID,InstructorID,Name")] Classroom classroom)
         {
-            if (id != student.StudentID)
+            if (id != classroom.ClassroomID)
             {
                 return NotFound();
             }
@@ -99,12 +106,12 @@ namespace Questudo.Controllers
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(classroom);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentID))
+                    if (!ClassroomExists(classroom.ClassroomID))
                     {
                         return NotFound();
                     }
@@ -115,10 +122,11 @@ namespace Questudo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            PopulateInstructorDropDownList(classroom.InstructorID);
+            return View(classroom);
         }
 
-        // GET: Students/Delete/5
+        // GET: Classrooms/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,30 +134,41 @@ namespace Questudo.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .SingleOrDefaultAsync(m => m.StudentID == id);
-            if (student == null)
+            var classroom = await _context.Classrooms
+                .Include(c => c.Instructor)
+                .SingleOrDefaultAsync(m => m.ClassroomID == id);
+            if (classroom == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(classroom);
         }
 
-        // POST: Students/Delete/5
+        // POST: Classrooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.StudentID == id);
-            _context.Students.Remove(student);
+            var classroom = await _context.Classrooms.SingleOrDefaultAsync(m => m.ClassroomID == id);
+            _context.Classrooms.Remove(classroom);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(int id)
+        private bool ClassroomExists(int id)
         {
-            return _context.Students.Any(e => e.StudentID == id);
+            return _context.Classrooms.Any(e => e.ClassroomID == id);
         }
+
+        private void PopulateInstructorDropDownList(object selectedInstructor = null)
+        {
+            var instructorsQuery = from i in _context.Instructors
+                                   orderby i.Name
+                                   select i;
+            ViewBag.InstructorID = new SelectList(instructorsQuery.AsNoTracking(), "InstructorID", "Name", selectedInstructor);
+        }
+
+        
     }
 }

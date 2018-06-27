@@ -1,0 +1,32 @@
+﻿@model Questudo.Models.Enrolled
+
+@{
+    ViewData["Title"] = "Desmatricular";
+}
+
+<h2>Desmatricular aluno</h2>
+
+<h3>Tem certeza que deseja desmatricular esse aluno?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Sala de Aula
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Classroom.Name)
+        </dd>
+        <dt>
+            Estudante
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EnrolledID" />
+        <input type="submit" value="Desmatricular" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar para a lista de matrículas</a>
+    </form>
+</div>

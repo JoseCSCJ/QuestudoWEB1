@@ -1,0 +1,37 @@
+﻿@model Questudo.Models.Classroom
+
+@{
+    ViewData["Title"] = "Criar";
+}
+
+<h2>Criar</h2>
+
+<h4>Sala de Aula</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InstructorID" class="control-label">Instrutor</label>
+                <select asp-for="InstructorID" class ="form-control" asp-items="ViewBag.InstructorID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nome da Sala de Aula</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para a lista de Salas de Aula</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
